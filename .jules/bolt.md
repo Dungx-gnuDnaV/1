@@ -1,0 +1,3 @@
+## 2026-10-27 - SQLite Missing Indexes on Foreign Keys Causes Automatic Transient Index Overhead
+**Learning:** In SQLite with `better-sqlite3`, foreign keys are not automatically indexed. Queries that perform `JOIN` or `WHERE` filtering on foreign key columns (such as `students.class_id`, `attendance_records.student_id`, `conduct_events.student_id`) trigger SQLite to construct transient automatic indexes (`AUTOMATIC COVERING INDEX`) in memory at runtime on every query execution.
+**Action:** Always define `CREATE INDEX IF NOT EXISTS` for foreign keys and query filters in database initialization (`initDatabase`) to avoid runtime automatic indexing overhead and accelerate query execution.
