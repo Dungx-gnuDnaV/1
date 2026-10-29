@@ -1,0 +1,3 @@
+## 2026-10-29 - SQLite Indexes & Hash Map Grouping for API Queries
+**Learning:** SQLite foreign keys and filtering columns without explicit indexes result in full table scans during API joins and queries. Additionally, nested `.filter()` or `.find()` loops over fetched SQL results incur O(N * M) overhead in API route handlers.
+**Action:** Always define `CREATE INDEX IF NOT EXISTS` on foreign key columns (`class_id`, `student_id`, `subject_id`, `semester_id`, `session_id`) and frequently queried compound keys, and use Hash Map (`Map<string, T>`) lookups for O(N + M) aggregations in Next.js API route handlers.
